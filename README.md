@@ -1,2 +1,2 @@
-# ManajemenKos-Android
+# ManajemenKos
 Project PAB
