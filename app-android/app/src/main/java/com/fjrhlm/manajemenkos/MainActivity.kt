@@ -1,8 +1,8 @@
 package com.fjrhlm.manajemenkos
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -12,9 +12,10 @@ class MainActivity : AppCompatActivity() {
 
         val btnBayar = findViewById<Button>(R.id.btnBayar)
 
+        // Mengubah aksi tombol bayar untuk pindah ke PaymentActivity
         btnBayar.setOnClickListener {
-            // Nantinya ini akan pindah ke PaymentActivity untuk upload bukti (CRUD: Create)
-            Toast.makeText(this, "Menuju Halaman Pembayaran...", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
         }
     }
 }
