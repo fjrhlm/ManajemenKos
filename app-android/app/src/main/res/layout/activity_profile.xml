@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_light">
@@ -8,41 +9,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="32dp">
+        android:padding="24dp">
 
-        <!-- Logo -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🏠"
-            android:textSize="48sp"
-            android:layout_marginTop="32dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Kembali"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingEnd="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil Saya"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <!-- Avatar -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SiKos"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary" />
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Masuk ke akun Anda"
-            android:textSize="14sp"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="40dp" />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="👤"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:background="@drawable/input_bg" />
+        </LinearLayout>
 
-        <!-- Card Login -->
+        <!-- Card Profil -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_marginBottom="24dp">
+            app:cardElevation="3dp"
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,6 +68,28 @@
                 android:orientation="vertical"
                 android:padding="24dp"
                 android:background="@color/card_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Lengkap"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Nama"
+                    android:inputType="textPersonName"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/input_bg"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,7 +103,7 @@
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="Masukkan email"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -76,17 +116,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Password"
+                    android:text="Kamar"
                     android:textSize="13sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="6dp" />
 
                 <EditText
-                    android:id="@+id/etPassword"
+                    android:id="@+id/etKamar"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:hint="Masukkan password"
-                    android:inputType="textPassword"
+                    android:hint="Belum ada kamar"
+                    android:enabled="false"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:background="@drawable/input_bg"
@@ -96,38 +136,16 @@
                     android:textColorHint="@color/text_secondary" />
 
                 <Button
-                    android:id="@+id/btnLogin"
+                    android:id="@+id/btnSimpan"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="MASUK"
-                    android:textSize="15sp"
+                    android:text="SIMPAN PERUBAHAN"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:backgroundTint="@color/primary" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Belum punya akun? "
-                android:textSize="14sp"
-                android:textColor="@color/text_secondary" />
-
-            <TextView
-                android:id="@+id/tvRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Daftar di sini"
-                android:textSize="14sp"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
