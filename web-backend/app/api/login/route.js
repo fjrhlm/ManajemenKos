@@ -1,10 +1,11 @@
 import { supabase } from '@/lib/supabase';
+import { parseBody } from '@/lib/parseBody';
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    const { email, password } = await parseBody(request);
 
     const { data: user, error } = await supabase
       .from('users')

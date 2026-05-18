@@ -1,12 +1,12 @@
 import { supabase } from '@/lib/supabase';
+import { parseBody } from '@/lib/parseBody';
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request) {
   try {
-    const { nama, email, password } = await request.json();
+    const { nama, email, password } = await parseBody(request);
 
-    // Cek email sudah terdaftar
     const { data: existing } = await supabase.from('users').select('id').eq('email', email).single();
     if (existing) {
       return NextResponse.json({ status: 'error', message: 'Email sudah terdaftar' }, { status: 400 });

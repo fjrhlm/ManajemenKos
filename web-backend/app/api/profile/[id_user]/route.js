@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { parseBody } from '@/lib/parseBody';
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
@@ -26,7 +27,7 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const { id_user } = await params;
-    const { nama, email } = await request.json();
+    const { nama, email } = await parseBody(request);
 
     const { data, error } = await supabase.from('users')
       .update({ nama, name: nama, email }).eq('id', id_user).select().single();
