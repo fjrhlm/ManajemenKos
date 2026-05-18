@@ -3,17 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Palet Warna SiKos -->
-    <color name="primary">#1565C0</color>
-    <color name="primary_dark">#0D47A1</color>
-    <color name="primary_light">#42A5F5</color>
-    <color name="accent">#00BFA5</color>
-    <color name="bg_light">#F5F7FA</color>
+    <!-- Palet Warna SiKos Premium Modern -->
+    <color name="primary">#4F46E5</color> <!-- Indigo 600 -->
+    <color name="primary_dark">#3730A3</color>
+    <color name="primary_light">#818CF8</color>
+    <color name="accent">#0EA5E9</color> <!-- Sky Blue -->
+    <color name="bg_light">#F8FAFC</color> <!-- Slate 50 -->
     <color name="card_bg">#FFFFFF</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="divider">#E0E0E0</color>
-    <color name="success">#4CAF50</color>
-    <color name="danger">#EF5350</color>
-    <color name="warning">#FFA726</color>
+    <color name="text_primary">#0F172A</color> <!-- Slate 900 -->
+    <color name="text_secondary">#64748B</color> <!-- Slate 500 -->
+    <color name="divider">#E2E8F0</color> <!-- Slate 200 -->
+    <color name="success">#10B981</color> <!-- Emerald 500 -->
+    <color name="danger">#EF4444</color> <!-- Red 500 -->
+    <color name="warning">#F59E0B</color> <!-- Amber 500 -->
 </resources>
