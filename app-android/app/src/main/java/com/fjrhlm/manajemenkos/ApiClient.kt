@@ -4,8 +4,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    // Alamat IP 10.0.2.2 ini adalah localhost-nya Emulator Android
-    private const val BASE_URL = "http://192.168.0.104:8000/api/"
+    // Backend cloud di Vercel (online 24 jam)
+    private const val BASE_URL = "https://manajemen-kos-alpha.vercel.app/api/"
 
     val instance: ApiService by lazy {
         val retrofit = Retrofit.Builder()

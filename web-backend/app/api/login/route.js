@@ -16,7 +16,14 @@ export async function POST(request) {
       return NextResponse.json({ status: 'error', message: 'Email tidak ditemukan' }, { status: 401 });
     }
 
-    const valid = await bcrypt.compare(password, user.password);
+    // Support password plain text (dari SQL Editor) dan bcrypt hash (dari register)
+    const isBcrypt = user.password && user.password.startsWith('$2');
+    let valid = false;
+    if (isBcrypt) {
+      valid = await bcrypt.compare(password, user.password);
+    } else {
+      valid = (password === user.password);
+    }
     if (!valid) {
       return NextResponse.json({ status: 'error', message: 'Password salah' }, { status: 401 });
     }
