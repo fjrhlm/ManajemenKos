@@ -37,13 +37,20 @@ interface ApiService {
         @Path("id_user") idUser: Int
     ): Call<TagihanResponse>
 
-    // Mengirim Gambar Bukti Transfer (POST Multipart)
+    // Mengirim Gambar Bukti Transfer (POST Multipart) - (Lama, Opsional)
     @Multipart
     @POST("tagihan/upload/{id_tagihan}")
     fun uploadBukti(
         @Path("id_tagihan") idTagihan: Int,
         @Part bukti_transfer: MultipartBody.Part
     ): Call<TagihanResponse>
+
+    // Bayar menggunakan Midtrans (POST)
+    @FormUrlEncoded
+    @POST("tagihan/pay")
+    fun payTagihan(
+        @Field("id_tagihan") idTagihan: Int
+    ): Call<MidtransResponse>
 
     // Profil (GET)
     @GET("profile/{id_user}")

@@ -79,3 +79,11 @@ data class GenericResponse(
     val status: String,
     val message: String
 )
+
+// Model untuk menangkap respon Midtrans Pay
+data class MidtransResponse(
+    val status: String,
+    val token: String?,
+    @SerializedName("redirect_url") val redirectUrl: String?,
+    val message: String?
+)
