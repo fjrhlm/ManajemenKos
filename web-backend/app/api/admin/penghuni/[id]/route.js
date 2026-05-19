@@ -23,10 +23,29 @@ export async function POST(request, { params }) {
     // 2. Proses Tagihan
     if (nominal) {
       const bulan = bulan_tahun || new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      const { error } = await supabase.from('tagihan').insert({
-        id_user: id, bulan_tahun: bulan, nominal, status_bayar: 'Belum Bayar'
-      });
-      if (error) throw error;
+      
+      // Cek apakah tagihan di bulan tersebut sudah ada
+      const { data: existingTagihan } = await supabase
+        .from('tagihan')
+        .select('id_tagihan')
+        .eq('id_user', id)
+        .eq('bulan_tahun', bulan)
+        .maybeSingle();
+
+      if (existingTagihan) {
+        // Jika sudah ada, cukup update nominalnya saja (mencegah duplikat)
+        const { error } = await supabase
+          .from('tagihan')
+          .update({ nominal })
+          .eq('id_tagihan', existingTagihan.id_tagihan);
+        if (error) throw error;
+      } else {
+        // Jika belum ada, buat tagihan baru
+        const { error } = await supabase.from('tagihan').insert({
+          id_user: id, bulan_tahun: bulan, nominal, status_bayar: 'Belum Bayar'
+        });
+        if (error) throw error;
+      }
     }
 
     return NextResponse.json({ status: 'success', message: 'Penghuni berhasil dikelola' });
