@@ -2,11 +2,11 @@ package com.fjrhlm.manajemenkos
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
-        val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnRegister = findViewById<MaterialButton>(R.id.btnRegister)
         val tvLogin = findViewById<TextView>(R.id.tvLogin)
 
         btnRegister.setOnClickListener {
@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
             val password = etPassword.text.toString().trim()
             val confirmPassword = etConfirmPassword.text.toString().trim()
 
-            if (nama.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "Semua kolom harus diisi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -49,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
 
             ApiClient.instance.registerUser(nama, email, password).enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
-                    btnRegister.text = "DAFTAR"
+                    btnRegister.text = "Daftar Sekarang"
                     btnRegister.isEnabled = true
 
                     if (response.isSuccessful && response.body()?.status == "success") {
@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                    btnRegister.text = "DAFTAR"
+                    btnRegister.text = "Daftar Sekarang"
                     btnRegister.isEnabled = true
                     Toast.makeText(this@RegisterActivity, "Koneksi Error!", Toast.LENGTH_LONG).show()
                 }

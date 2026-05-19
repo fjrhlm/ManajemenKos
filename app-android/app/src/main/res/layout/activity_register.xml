@@ -110,6 +110,28 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:background="@drawable/input_bg"
+                        android:layout_marginBottom="16dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Konfirmasi Password"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="8dp" />
+
+                    <EditText
+                        android:id="@+id/etConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="••••••••"
+                        android:inputType="textPassword"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:background="@drawable/input_bg"
                         android:layout_marginBottom="32dp"
                         android:textSize="15sp"
                         android:textColor="@color/text_primary" />
