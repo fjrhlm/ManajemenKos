@@ -17,19 +17,24 @@ export async function POST(request) {
         return NextResponse.json({ status: 'error', message: 'ID Tagihan diperlukan' }, { status: 400 });
     }
 
-    // 1. Ambil data tagihan beserta data user yang berelasi
+    // 1. Ambil data tagihan terlebih dahulu tanpa join untuk mencegah error relasi
     const { data: tagihan, error } = await supabase
       .from('tagihan')
-      .select(`
-        *,
-        users ( nama, email )
-      `)
+      .select('*')
       .eq('id_tagihan', id_tagihan)
       .single();
 
     if (error || !tagihan) {
+      console.error("Supabase Error:", error);
       return NextResponse.json({ status: 'error', message: 'Tagihan tidak ditemukan' }, { status: 404 });
     }
+
+    // Ambil data user secara terpisah
+    const { data: user } = await supabase
+      .from('users')
+      .select('nama, email')
+      .eq('id', tagihan.id_user)
+      .single();
 
     // Jika sudah lunas, tolak
     if (tagihan.status_bayar === 'Lunas') {
@@ -44,8 +49,8 @@ export async function POST(request) {
         "gross_amount": parseInt(tagihan.nominal)
       },
       "customer_details": {
-        "first_name": tagihan.users?.nama || "Penghuni",
-        "email": tagihan.users?.email || "penghuni@kos.com"
+        "first_name": user?.nama || "Penghuni",
+        "email": user?.email || "penghuni@kos.com"
       }
     };
 

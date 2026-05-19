@@ -46,7 +46,8 @@ class PaymentActivity : AppCompatActivity() {
                             finish() // Tutup halaman ini, biarkan user selesaikan di browser
                         }
                     } else {
-                        Toast.makeText(this@PaymentActivity, response.body()?.message ?: "Gagal memproses", Toast.LENGTH_SHORT).show()
+                        val errMsg = response.errorBody()?.string() ?: response.body()?.message ?: "Gagal memproses"
+                        Toast.makeText(this@PaymentActivity, "Gagal: $errMsg", Toast.LENGTH_LONG).show()
                     }
                 }
 
