@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:paddingBottom="80dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil Saya"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Avatar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="👤"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:background="@drawable/icon_bg_light" />
+        </LinearLayout>
+
+        <!-- Card Profil -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:background="@color/card_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Lengkap"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="Nama"
+                    android:inputType="textPersonName"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/input_bg"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/input_bg"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kamar"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/etKamar"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="Belum ada kamar"
+                    android:enabled="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/input_bg"
+                    android:layout_marginBottom="24dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_secondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSimpan"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Simpan Perubahan"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif-medium"
+                    app:cornerRadius="16dp"
+                    app:backgroundTint="@color/primary" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Tombol Keluar Akun -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Keluar Akun"
+            android:textSize="15sp"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/card_bg"
+            android:textColor="@color/danger"
+            app:strokeColor="@color/danger"
+            app:strokeWidth="1dp"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -92,6 +92,8 @@
                     android:layout_height="56dp"
                     android:text="Lanjutkan Pembayaran"
                     android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif-medium"
                     app:cornerRadius="16dp"
                     app:backgroundTint="@color/primary" />
             </LinearLayout>

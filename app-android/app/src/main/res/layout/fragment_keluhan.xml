@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keluhan &amp; Masukan"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/text_primary"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Form Keluhan -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@color/card_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kirim Keluhan Baru"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/etIsi"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Tulis keluhan atau masukan Anda..."
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="12dp"
+                android:background="@drawable/input_bg"
+                android:layout_marginBottom="16dp"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKirim"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Kirim Keluhan"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                app:cornerRadius="14dp"
+                app:backgroundTint="@color/primary" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Riwayat Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Riwayat Keluhan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Riwayat List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvKeluhan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false" />
+
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Belum ada keluhan yang dikirim"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

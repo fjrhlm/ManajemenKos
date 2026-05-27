@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/header_gradient"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏠 SiKos"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#C7D2FE"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Halo!"
+                    android:textSize="26sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tvKamar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Memuat data..."
+                    android:textSize="15sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#E0E7FF" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="-48dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="100dp">
+
+            <!-- Card Tagihan Utama -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:background="@color/card_bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="💰"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/icon_bg_light" />
+
+                        <TextView
+                            android:id="@+id/tvTagihanBulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tagihan Bulan Ini"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginStart="12dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNominal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rp -"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/text_primary" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divider"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvStatus"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Status: -"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_secondary" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnBayar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BAYAR SEKARANG"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            app:cornerRadius="12dp"
+                            app:backgroundTint="@color/primary" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Quick Info Cards Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:baselineAligned="false">
+
+                <!-- Info Kamar -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginEnd="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:background="@color/card_bg">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:text="🏠"
+                            android:textSize="22sp"
+                            android:gravity="center"
+                            android:background="@drawable/icon_bg_light"
+                            android:layout_marginBottom="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status Kamar"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/tvInfoKamar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Aktif"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/success"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Info Pembayaran -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginStart="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:background="@color/card_bg">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:text="📅"
+                            android:textSize="22sp"
+                            android:gravity="center"
+                            android:background="@drawable/icon_bg_light"
+                            android:layout_marginBottom="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Periode"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary" />
+
+                        <TextView
+                            android:id="@+id/tvInfoPeriode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Bantuan Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:background="@color/card_bg"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:text="📞"
+                        android:textSize="24sp"
+                        android:gravity="center"
+                        android:background="@drawable/icon_bg_light" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Butuh Bantuan?"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kirim keluhan via menu Keluhan"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="→"
+                        android:textSize="20sp"
+                        android:textColor="@color/primary" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

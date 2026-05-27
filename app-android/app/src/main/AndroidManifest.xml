@@ -24,14 +24,6 @@
             android:exported="false" />
 
         <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".KeluhanActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

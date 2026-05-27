@@ -1,240 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_light">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-        android:background="@android:color/transparent"
-        app:elevation="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/header_gradient"
-            android:padding="24dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerVertical="true">
-
-                <TextView
-                    android:id="@+id/tvNama"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Halo!"
-                    android:textSize="26sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:id="@+id/tvKamar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Memuat data..."
-                    android:textSize="15sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#E2E8F0" />
-            </LinearLayout>
-
-        </RelativeLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginTop="-60dp">
+        android:layout_above="@+id/bottomNavContainer" />
 
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/bottomNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/card_bg"
+        android:elevation="16dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:background="@color/card_bg"
+            app:itemIconTint="@color/primary"
+            app:itemTextColor="@color/primary"
+            app:itemActiveIndicatorStyle="@style/BottomNavIndicator"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+    </LinearLayout>
 
-            <!-- Card Tagihan -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                android:layout_marginBottom="24dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp"
-                    android:background="@color/card_bg">
-
-                    <TextView
-                        android:id="@+id/tvTagihanBulan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tagihan Bulan Ini"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvNominal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rp -"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-black"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="8dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/divider"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:id="@+id/tvStatus"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:text="Status: -"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_secondary" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnBayar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="BAYAR SEKARANG"
-                            android:textSize="12sp"
-                            app:cornerRadius="12dp"
-                            app:backgroundTint="@color/primary"
-                            android:textColor="@color/white" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Menu Grid -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menu Utama"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:layout_marginBottom="24dp">
-
-                <!-- Menu Profil -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardProfil"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp"
-                    android:layout_marginEnd="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="24dp"
-                        android:background="@color/card_bg">
-
-                        <TextView
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:text="👤"
-                            android:gravity="center"
-                            android:textSize="28sp"
-                            android:background="@drawable/icon_bg_light" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Profil"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/text_primary"
-                            android:layout_marginTop="12dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Menu Keluhan -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardKeluhan"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp"
-                    android:layout_marginStart="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="24dp"
-                        android:background="@color/card_bg">
-
-                        <TextView
-                            android:layout_width="56dp"
-                            android:layout_height="56dp"
-                            android:text="📝"
-                            android:gravity="center"
-                            android:textSize="28sp"
-                            android:background="@drawable/icon_bg_light" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Keluhan"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/text_primary"
-                            android:layout_marginTop="12dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-
-            <!-- Tombol Logout -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Keluar Akun"
-                android:textSize="15sp"
-                app:cornerRadius="16dp"
-                app:backgroundTint="@color/card_bg"
-                android:textColor="@color/danger"
-                app:strokeColor="@color/danger"
-                app:strokeWidth="1dp" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
