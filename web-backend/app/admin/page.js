@@ -97,7 +97,17 @@ export default function AdminDashboard() {
         </div>
 
         {/* TAB 1: Tagihan */}
-        {tab === 'tagihan' && (
+        {tab === 'tagihan' && (() => {
+          // Kelompokkan tagihan berdasarkan bulan_tahun
+          const grouped = {};
+          tagihan.forEach(t => {
+            const key = t.bulan_tahun || 'Tidak Diketahui';
+            if (!grouped[key]) grouped[key] = [];
+            grouped[key].push(t);
+          });
+          const months = Object.keys(grouped);
+
+          return (
           <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
             <div style={{ padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
               <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '700' }}>Daftar Tagihan & Pembayaran</h2>
@@ -107,36 +117,48 @@ export default function AdminDashboard() {
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ background: 'rgba(255,255,255,0.05)' }}>
-                    {['No', 'Nama', 'Kamar', 'Bulan', 'Nominal', 'Status', 'Aksi'].map(h => (
+                    {['No', 'Nama', 'Kamar', 'Nominal', 'Status', 'Aksi'].map(h => (
                       <th key={h} style={{ padding: '14px 16px', textAlign: 'center', fontSize: '13px', fontWeight: '600', color: '#94a3b8' }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {tagihan.map((t, i) => (
-                    <tr key={t.id_tagihan} style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                      <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>{i + 1}</td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: '600', fontSize: '14px' }}>{t.nama || '-'}</td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>{t.nomor_kamar || '-'}</td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>{t.bulan_tahun}</td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>Rp {Number(t.nominal).toLocaleString('id-ID')}</td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center' }}>
-                        <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '600', background: t.status_bayar === 'Lunas' ? '#22c55e' : t.status_bayar === 'Menunggu Validasi' ? '#f59e0b' : '#ef4444', color: '#fff' }}>{t.status_bayar}</span>
-                      </td>
-                      <td style={{ padding: '14px 16px', textAlign: 'center' }}>
-                        <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
-                          {t.status_bayar !== 'Lunas' && <button onClick={() => handleValidasi(t.id_tagihan)} style={{ padding: '6px 14px', borderRadius: '8px', border: 'none', background: '#3b82f6', color: '#fff', cursor: 'pointer', fontSize: '12px', fontWeight: '600' }}>ACC</button>}
-                          <button onClick={() => handleDeleteTagihan(t.id_tagihan)} style={{ padding: '6px 10px', borderRadius: '8px', border: '1px solid #ef4444', background: 'transparent', color: '#ef4444', cursor: 'pointer', fontSize: '12px' }}>🗑️</button>
-                        </div>
-                      </td>
-                    </tr>
+                  {months.length === 0 && <tr><td colSpan={6} style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>Belum ada data tagihan</td></tr>}
+                  {months.map(bulan => (
+                    <>
+                      {/* Header Pemisah Bulan */}
+                      <tr key={`header-${bulan}`}>
+                        <td colSpan={6} style={{ padding: '14px 20px', background: 'linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15))', borderTop: '2px solid rgba(59,130,246,0.3)', fontSize: '15px', fontWeight: '700', color: '#93c5fd' }}>
+                          📅 {bulan}
+                          <span style={{ marginLeft: '12px', fontSize: '12px', fontWeight: '500', color: '#64748b' }}>({grouped[bulan].length} tagihan)</span>
+                        </td>
+                      </tr>
+                      {/* Data per Bulan */}
+                      {grouped[bulan].map((t, i) => (
+                        <tr key={t.id_tagihan} style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                          <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>{i + 1}</td>
+                          <td style={{ padding: '14px 16px', textAlign: 'center', fontWeight: '600', fontSize: '14px' }}>{t.nama || '-'}</td>
+                          <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>{t.nomor_kamar || '-'}</td>
+                          <td style={{ padding: '14px 16px', textAlign: 'center', fontSize: '14px' }}>Rp {Number(t.nominal).toLocaleString('id-ID')}</td>
+                          <td style={{ padding: '14px 16px', textAlign: 'center' }}>
+                            <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '600', background: t.status_bayar === 'Lunas' ? '#22c55e' : t.status_bayar === 'Menunggu Validasi' ? '#f59e0b' : '#ef4444', color: '#fff' }}>{t.status_bayar}</span>
+                          </td>
+                          <td style={{ padding: '14px 16px', textAlign: 'center' }}>
+                            <div style={{ display: 'flex', gap: '6px', justifyContent: 'center' }}>
+                              {t.status_bayar !== 'Lunas' && <button onClick={() => handleValidasi(t.id_tagihan)} style={{ padding: '6px 14px', borderRadius: '8px', border: 'none', background: '#3b82f6', color: '#fff', cursor: 'pointer', fontSize: '12px', fontWeight: '600' }}>ACC</button>}
+                              <button onClick={() => handleDeleteTagihan(t.id_tagihan)} style={{ padding: '6px 10px', borderRadius: '8px', border: '1px solid #ef4444', background: 'transparent', color: '#ef4444', cursor: 'pointer', fontSize: '12px' }}>🗑️</button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </>
                   ))}
-                  {tagihan.length === 0 && <tr><td colSpan={7} style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>Belum ada data tagihan</td></tr>}
                 </tbody>
               </table>
             </div>
           </div>
-        )}
+          );
+        })()}
 
         {/* TAB 2: Kelola */}
         {tab === 'kelola' && (

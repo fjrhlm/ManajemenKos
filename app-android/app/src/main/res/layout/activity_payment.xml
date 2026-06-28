@@ -20,13 +20,14 @@
             android:id="@+id/tvBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kembali"
+            android:text="← Kembali"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:padding="8dp" />
 
         <TextView
+            android:id="@+id/tvHeaderTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,10 +36,12 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginEnd="32dp" />
+            android:layout_marginEnd="48dp" />
     </LinearLayout>
 
+    <!-- Card Info (tampil awal sebelum klik bayar) -->
     <LinearLayout
+        android:id="@+id/layInfoCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -71,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pilih Metode Pembayaran"
+                    android:text="Pembayaran Aman"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary" />
@@ -79,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Anda akan diarahkan ke halaman aman Midtrans untuk memilih Bank (BCA, Mandiri, dll) atau E-Wallet (GoPay, ShopeePay)."
+                    android:text="Pembayaran akan dibuka langsung di dalam aplikasi ini. Pilih metode pembayaran seperti BCA, Mandiri, GoPay, ShopeePay, dan lainnya."
                     android:textSize="14sp"
                     android:textColor="@color/text_secondary"
                     android:gravity="center"
@@ -90,7 +93,7 @@
                     android:id="@+id/btnSubmitPayment"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="Lanjutkan Pembayaran"
+                    android:text="Bayar Sekarang"
                     android:textSize="15sp"
                     android:textColor="@color/white"
                     android:fontFamily="sans-serif-medium"
@@ -99,4 +102,25 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+
+    <!-- WebView Midtrans (muncul setelah klik bayar) -->
+    <WebView
+        android:id="@+id/webViewMidtrans"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layHeader"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Loading Indicator -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/webViewMidtrans"
+        app:layout_constraintBottom_toBottomOf="@id/webViewMidtrans" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
